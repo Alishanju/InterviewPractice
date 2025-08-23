@@ -1,0 +1,64 @@
+---->Roadside coder you tube:
+
+Redux has three core components that make its architecture work:
+
+ -> Store
+
+Holds the entire application state in one place.
+
+Created using createStore() (or configureStore() in Redux Toolkit).
+
+ -> Actions
+
+Plain JavaScript objects that describe what happened.
+
+Must have a type property (and can include additional payload data).
+
+ -> Reducers
+
+Pure functions that take the current state and an action, then return a new state.
+
+They define how the state changes in response to actions.
+
+
+
+**** Redux has store where the state lives , Actions and Reducers are used to change the state as state is immutable in redux 
+
+ex:when user clicks increment button, increment action is dispatched ,this action has type,payload(optional); 
+Taking inputs as state,action(optional); Reducer takes copy of old state and returns new state 
+
+
+---->Codsen solutions you tube:
+
+Redux is a state management library that allows us to have a global state
+It means, state can be accessible to any component , avoids prop drilling
+
+Redux has 3 concepts -> store has made up of multiple slices of state each represent specific domain ex: counter slice,
+
+Reducer never change state directly, take copy of state ,make changes to that copied state and then set state with that copied state/override the entire state
+
+
+*****imp:
+ // Redux Toolkit allows us to write "mutating" logic in reducers. It
+      // doesn't actually mutate the state because it uses the Immer library,
+      // which detects changes to a "draft state" and produces a brand new
+      // immutable state based off those changes
+	  
+	  //createSlice from Redux toolkit only does above 
+	  
+	  
+	  ***from redux link
+	  
+	  Create a Redux store with configureStore
+configureStore accepts a reducer function as a named argument
+configureStore automatically sets up the store with good default settings
+Provide the Redux store to the React application components
+Put a React-Redux <Provider> component around your <App />
+Pass the Redux store as <Provider store={store}>
+Create a Redux "slice" reducer with createSlice
+Call createSlice with a string name, an initial state, and named reducer functions
+Reducer functions may "mutate" the state using Immer
+Export the generated slice reducer and action creators
+Use the React-Redux useSelector/useDispatch hooks in React components
+Read data from the store with the useSelector hook
+Get the dispatch function with the useDispatch hook, and dispatch actions as needed

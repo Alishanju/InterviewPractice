@@ -1,0 +1,205 @@
+steps to include redux in code:
+refer: https://redux.js.org/tutorials/quick-start for better clarity
+
+1.configure store in store.js file within store folder
+
+import {configureStore} from '@reduxjs/toolkit'
+export const store=configureStore({
+    reducer:{} 
+})
+
+
+2.React app cant talk to redux directly. so, react redux(not from toolkit) provider is wrapped around react app component in main.jsx(this connects redux store and application state to react),store is accessible to anuy component in react now(as all components are used within app)
+
+
+import { StrictMode } from 'react'
+import { createRoot } from 'react-dom/client'
+import './index.css'
+import App from './App.jsx'
+import {Provider} from 'react-redux';
+import { store } from './store/store.js';
+
+createRoot(document.getElementById('root')).render(
+  <StrictMode>
+    <Provider store={store}>
+    <App />
+    </Provider>
+  </StrictMode>,
+)
+
+
+3.we can create counter slice in new counter.js file/counter.js file inside new counter folder (within store folder)
+Actions,reducers,state all goes into this slice
+
+import { createSlice } from "@reduxjs/toolkit";
+const initialState={
+    value:0
+}
+
+const counterSlice=createSlice({
+    name:"counter",
+    initialState,
+    reducers:{
+        
+    }
+
+});
+
+export default counterSlice.reducer;   
+
+
+4.you can give multiple slices and include them in configurestore reducer,
+
+import counterReducer from "./counter/counter.js" //fetches counterSlice.reducer
+
+import {configureStore} from '@reduxjs/toolkit'
+export const store=configureStore({
+    reducer:{
+        counter:counterReducer
+    }
+})
+
+
+5. add action in reducers in counterSlice like increment,decrement etc;state seems mutating here but createSlice internally uses immer to take copy of state and mutate it .later set it to state;action is optional
+
+
+reducers:{
+        increment:(state) =>{
+            state.value +=1;
+        },
+        decrement:(state) =>{
+            state.value -=1;
+        },
+        incrementByAmount:(state,action) =>{
+            state.value +=action.payload;
+        }
+        
+    }
+
+});
+
+export const {increment,decrement,incrementByAmount} =counterSlice.actions;
+export default counterSlice.reducer;
+
+6. we can use counter component in app and then use redux-react hooks to connct counter comp and redux store and use this com to dispatch actions(that updates state and reflect in UI;
+We can read data from the store with useSelector, and dispatch actions using useDispatch
+
+import React from 'react';
+import {useSelector,useDispatch} from 'react-redux';
+import { decrement, increment, incrementByAmount } from '../store/counter/counter';
+
+
+const Counter = () => {
+  const count=useSelector(state=> state.counter.value);
+  const dispatch=useDispatch();
+  return (
+    <div>
+        <h2>{count}</h2>
+        <button onClick={()=>dispatch(increment())}> Increment</button>
+        <button onClick={()=>dispatch(decrement())}>Decrement</button>
+        <button onClick={()=>dispatch(incrementByAmount(10))}>IncrementByAmount</button>
+      
+    </div>
+  )
+}
+
+export default Counter
+
+------>Perform Asynchronous actions with redux
+
+7.Redux Toolkit provides a createAsyncThunk API to implement the creation and dispatching of actions describing an async request.
+Reducers for async functions go to extrareducers in createSlice and extrareducers take builder as arguements that adds cases for createAsyncThunk API-fulfilled,pending,rejected
+
+In synchronous actions, first reducers then actions come but in async actions, first actions comes then reducers(extrareducers)
+
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+const initialState={
+    value:0,
+    loading:false
+}
+
+const counterSlice=createSlice({
+    name:"counter",
+    initialState,
+    reducers:{
+        increment:(state) =>{
+            state.value +=1;
+        },
+        decrement:(state) =>{
+            state.value -=1;
+        },
+        incrementByAmount:(state,action) =>{
+            state.value +=action.payload;
+        }
+        
+    },
+    extraReducers:(builder)=>{
+        builder.addCase(incrementAsync.pending,(state)=>{
+            //console.log("async operation pending");
+            state.loading=true
+        }).addCase(incrementAsync.fulfilled,(state,action)=>{
+               state.loading=false;
+            state.value+=action.payload;
+         
+        })
+    }
+
+});
+
+
+export const incrementAsync=createAsyncThunk(
+    'counter/incrementAsync', //slicename/actionname
+    async(amount)=>{
+        await new Promise((resolve)=> setTimeout(resolve,1000))
+        return amount; //return amount after 1 sec
+    })
+
+export const {increment,decrement,incrementByAmount} =counterSlice.actions;
+export default counterSlice.reducer;
+
+8.use incrementAsync in counter.jss
+
+import React from 'react';
+import {useSelector,useDispatch} from 'react-redux';
+import { decrement, increment, incrementAsync, incrementByAmount } from '../store/counter/counter';
+
+
+const Counter = () => {
+  const count=useSelector(state=> state.counter.value);
+  const loading=useSelector(state =>state.counter.loading);
+  const dispatch=useDispatch();
+  return (
+    <div>
+        {loading ? <div className='spinner'></div> :
+        <h2>{count}</h2>}
+        <button onClick={()=>dispatch(increment())}> Increment</button>
+        <button onClick={()=>dispatch(decrement())}>Decrement</button>
+        <button onClick={()=>dispatch(incrementByAmount(10))}>IncrementByAmount</button>
+        <button onClick={()=>dispatch(incrementAsync(100))}>IncrementByASync</button>
+      
+    </div>
+  )
+}
+
+export default Counter
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

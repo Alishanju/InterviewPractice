@@ -1,0 +1,14 @@
+java 8 basics -enhanced for loop,inheritence.
+Arrays & Hashing
+Strings  --> two pointers (dsa tracker strings)
+Linkedlist
+searching ,sorting algorithms
+Patterns- inverted traingle pattern,pascal triangle
+binary search
+palindrome,fibnocci, recursion
+kth largest number ,string rotation
+sliding window
+hashmap,hashset,arraylist ,iterator
+stack,queue(optional)
+Math.geometry
+greedy,backtracking (optional)

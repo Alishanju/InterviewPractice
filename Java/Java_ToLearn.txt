@@ -1,0 +1,17 @@
+Factorial
+Fibanocci-> recursion concepts
+inheritance
+interfaces 
+time and space complexity
+palindrome
+
+
+DSA:
+Arrays and strings
+sorting 
+seraching
+linked list
+hashset
+hashmap
+stack
+queue

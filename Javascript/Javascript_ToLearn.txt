@@ -1,0 +1,15 @@
+var vs let vs const
+List visualization
+Arrow functions
+map,filter,find etc
+DOM
+destructuring 
+spread operator
+IIFE
+promises
+async/await
+
+closures
+Debouncing
+throttling
+currying

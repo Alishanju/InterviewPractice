@@ -1,0 +1,80 @@
+
+
+React Basics-JSX,Virtual DOM,props,state etc
+
+
+
+React Hooks- 
+1.useState
+2.useEffect
+3.useRef(portals glance - not hook)
+4.useContext/context API
+5.useReducer
+6.useCallback
+7.useMemo
+8.custom react hook
+9.useActionState
+
+TanstackQuery
+10.useQuery
+11.useMutation
+
+Routing in React
+12.useNavigate
+13.useNavigation
+14.useLoaderData
+15.useParams
+16.useSubmit
+
+Redux
+17.useSelector
+18.useDispatch
+
+19.use hook
+
+
+React Concepts-
+Look at React complier,babel,portals,Memo,prop drilling,Recat Devtools,profiler,strict mode,
+two way binding,lifting state up,keys,keys for rendering components,
+ state scheduling & batching,code splitting,bundle size optimization,caching,SEO
+styling React components- inline styles,styled components,tailwinnd css, seperate css modules specific to  component
+Error boundaries 
+Routing in React-Multi page SPA with React Router
+React Redux
+React deployment-Lazy loading,suspense
+Tanstack Query- handling Http requests with ease
+Next js- SSR 
+SSR VS CSR VS SSG ETC
+React patterns - Compound components , Render props , HOC etc
+Testing React Apps
+React + typescript(example usage)
+Class based components
+sending http requests using useeffect
+
+React Coding - 
+Modal component
+dropdown component building
+tab system (switch tabs without routing)
+counter with useState
+Theme toggle with context api
+Todo List (Angela)
+Project Management app
+Quiz App
+Form validation -> form with validation
+API integration and data fetching
+Authentication
+Food order app
+Next js project
+Accordion
+auto search completion/typeahead/search input with Autocomplete -> search with debouncing
+Pagination/Infinite scroll
+Carousel/slideshow component
+Tic/tac/toe game
+Drag and drop list
+
+
+
+
+
+
+

@@ -1,0 +1,27 @@
+pull from remote to local:
+
+cmd in ur path:
+
+git clone https://github.com/octocat/Hello-World.git(1st time)
+cd Hello-World
+git pull origin main/master
+
+push from local to remote:
+
+cmd in ur path
+
+git init
+git remote add origin https://github.com/Alishanju/InterviewPractice.git (this path can be found on pressing code in repo)
+git add .
+git commit -m "Initial commit"
+git push -u origin main/master
+
+
+If you already cloned from GitHub, you don’t need git init or git remote add.
+You just do:
+
+git add .
+git commit -m "Your message"
+git push origin main/master
+
+

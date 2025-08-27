@@ -1,0 +1,58 @@
+body {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.outer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap:15px;
+  flex-direction: column;
+  background-color: antiquewhite;
+  height: 150px;
+  width: 200px;
+  padding:80px;
+  border-radius: 8px;
+
+}
+
+button{
+    color:black;
+    background-color:aqua;
+    padding:8px 10px;
+    font-weight: 500;
+    border:1px solid black;
+
+    border-radius: 3px;
+}
+
+input{
+    padding:8px;
+}
+
+button:hover{
+    background-color: beige;
+}
+
+button:focus{
+    background-color: gold;
+    font-weight: 700;
+}
+
+.error {
+    color: red;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+button:disabled{
+  background-color: lightgray;
+  color: white; 
+  border:none;
+  font-weight: 800;
+}

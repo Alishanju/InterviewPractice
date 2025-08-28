@@ -1,4 +1,5 @@
 //sorts array in place in ascending order 
+//sends largest number in 1st pass
 /*
  * Time complexity: O(n^2)
 Space complexity:O(1)

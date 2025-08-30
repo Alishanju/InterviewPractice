@@ -1,0 +1,277 @@
+**ESNext (Modern JavaScript) Concepts Cheat Sheet**
+
+---
+
+### 1. Let & Const
+
+* **Explanation:** Block-scoped variables. `let` can be reassigned, `const` cannot.
+* **Example:**
+
+```javascript
+let x = 10;
+x = 20;
+const y = 30;
+// y = 40; // Error
+```
+
+---
+
+### 2. Arrow Functions
+
+* **Explanation:** Shorter syntax and lexical `this`.
+* **Example:**
+
+```javascript
+const add = (a, b) => a + b;
+console.log(add(2,3)); // 5
+```
+
+---
+
+### 3. Template Literals
+
+* **Explanation:** Backticks for multi-line and interpolation.
+* **Example:**
+
+```javascript
+const name = 'Alisha';
+console.log(`Hello ${name}`);
+```
+
+---
+
+### 4. Destructuring
+
+* **Explanation:** Extract values from arrays or objects.
+* **Example:**
+
+```javascript
+const [a, b] = [1, 2];
+const {x, y} = {x: 10, y: 20};
+```
+
+---
+
+### 5. Default Parameters
+
+* **Explanation:** Functions can have default values.
+* **Example:**
+
+```javascript
+function greet(name = 'Guest') {
+  console.log(`Hello ${name}`);
+}
+greet(); // Hello Guest
+```
+
+---
+
+### 6. Rest & Spread Operators
+
+* **Explanation:** Rest collects, spread expands.
+* **Example:**
+
+```javascript
+function sum(...nums) { return nums.reduce((a,b)=>a+b,0); } //Rest (...nums in function parameter) ,collects as sum(1,2,3) => nums=[1,2,3]
+const arr = [1,2,3];
+console.log(sum(...arr)); //Spread (...arr in function call) ,sum(...[1, 2, 3]) // same as sum(1, 2, 3)
+```
+
+---
+
+### 7. Optional Chaining
+
+* **Explanation:** Safely access nested properties.
+* **Example:**
+
+```javascript
+const obj = {a: {b: 2}};
+console.log(obj.a?.b); // 2
+console.log(obj.x?.y); // undefined
+```
+
+---
+
+### 8. Nullish Coalescing
+
+* **Explanation:** `??` returns right-hand value if left is null/undefined.
+* **Example:**
+
+```javascript
+const val = null ?? 'default';
+console.log(val); // 'default'
+```
+
+---
+
+### 9. Dynamic Imports
+
+* **Explanation:** Load modules on demand.
+* **Example:**
+
+```javascript
+import('./module.js').then(mod => mod.doSomething());
+```
+
+---
+
+### 10. BigInt
+
+* **Explanation:** Handle integers beyond `Number.MAX_SAFE_INTEGER`.
+* **Example:**
+
+```javascript
+const big = 123456789012345678901234567890n;
+console.log(big);
+```
+
+---
+
+### 11. Promise & Async/Await
+
+* **Explanation:** Handle asynchronous operations.
+* **Example:**
+
+```javascript
+async function fetchData() {
+  const res = await fetch('https://api.com');
+  const data = await res.json();
+  console.log(data);
+}
+```
+
+---
+
+### 12. Modules (ESM)
+
+* **Explanation:** `import`/`export` syntax.
+* **Example:**
+
+```javascript
+// module.js
+export const a = 5;
+// main.js
+import {a} from './module.js';
+```
+
+---
+
+### 13. Enhanced Object Literals
+
+* **Explanation:** Shorthand for property names, methods, and computed keys.
+* **Example:**
+
+```javascript
+const name = 'Alisha';
+const obj = {name, greet(){console.log('Hi')}};
+```
+console.log(obj.name);  // Output: 'Alisha'
+obj.greet();            // Output: 'Hi'
+console.log(obj);       // Output: { name: 'Alisha', greet: [Function: greet] }
+---
+
+### 14. for…of Loop
+
+* **Explanation:** Iterate over iterable objects.
+* **Example:**
+
+```javascript
+const arr = [10,20,30];
+for (const num of arr) console.log(num);
+```
+
+---
+
+### 15. Private Class Fields
+
+* **Explanation:** Encapsulation using `#`.
+* **Example:**
+
+```javascript
+class Person {
+  #name;
+  constructor(name) { this.#name = name; }
+  getName() { return this.#name; }
+}
+```
+
+---
+
+### 16. Top-Level Await
+
+* **Explanation:** Use `await` outside async functions.
+* **Example:**
+
+```javascript
+const data = await fetch('https://api.com').then(r => r.json());
+console.log(data);
+```
+
+---
+
+### 17. Logical Assignment Operators
+
+* **Explanation:** `||=`, `&&=`, `??=` shorthand.
+* **Example:**
+
+```javascript
+let a;
+a ??= 10; // a = 10
+```
+
+---
+
+### 18. WeakRefs & FinalizationRegistry
+
+* **Explanation:** Manage memory for objects with weak references.
+* **Example:**
+
+```javascript
+let obj = {name: 'Alisha'};
+const ref = new WeakRef(obj);
+console.log(ref.deref()); //{name:"Alisha"}
+//If obj were removed and garbage collected, ref.deref() would return undefined.
+```
+
+---
+
+### 19. Temporal API (ES2023+)
+
+* **Explanation:** Modern date/time handling.
+* **Example:**
+
+```javascript
+const dt = Temporal.Now.plainDateISO(); //more accurate and less error prone that old date object
+console.log(dt.toString());
+```
+//2025-08-30
+---
+
+### 20. New Array/String Methods
+
+* **Explanation:** `at()`, `flatMap()`, `replaceAll()`
+* **Example:**
+
+```javascript
+console.log([10,20,30].at(-1)); // 30
+console.log('a-b-c'.replaceAll('-', '_')); // a_b_c
+
+flatMap() maps each element of an array to a new array (or value) and then flattens the result by one level.
+
+const arr = [1, 2, 3];
+
+const result = arr.flatMap(x => [x, x * 2]);
+console.log(result);
+Output:
+[1, 2, 2, 4, 3, 6]
+
+
+
+const arr = [1, 2, 3];
+
+const result = arr.map(x => [x, x * 2]); 
+console.log(result);
+Output:
+
+[[1, 2], [2, 4], [3, 6]]
+```

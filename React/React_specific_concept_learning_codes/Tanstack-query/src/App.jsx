@@ -1,18 +1,16 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-import PostList from './components/PostList'
+import {useState} from "react";
+import "./App.css";
+import PostList from "./components/PostList";
 
 function App() {
-  
-
+  const [toggle, setToggle] = useState(true);
   return (
-    <>
-    <h2 className='title'>My Posts</h2>
-      <PostList/>
-    </>
-  )
+    <div>
+      <h2 className="title">My Posts</h2>
+      <button onClick={() => setToggle(!toggle)}>Toggle</button>
+      {toggle && <PostList />}
+    </div>
+  );
 }
 
-export default App
+export default App;

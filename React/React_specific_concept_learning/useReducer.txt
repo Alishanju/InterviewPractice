@@ -1,0 +1,103 @@
+🔹 What is useReducer?
+
+useReducer is a React Hook used for state management.
+
+It’s an alternative to useState when you have complex state logic (like multiple related values or state transitions).
+
+It’s based on the reducer pattern (same concept used in Redux).
+
+🔹 Syntax
+const [state, dispatch] = useReducer(reducer, initialState);
+
+
+reducer → a pure function (state, action) => newState.
+
+initialState → starting state.
+
+state → current state.
+
+dispatch → function to trigger state changes by sending an action.
+
+🔹 Example: Counter App
+import React, { useReducer } from "react";
+
+// Reducer function
+function reducer(state, action) {
+  switch (action.type) {
+    case "increment":
+      return { count: state.count + 1 };
+    case "decrement":
+      return { count: state.count - 1 };
+    case "reset":
+      return { count: 0 };
+    default:
+      return state;
+  }
+}
+
+export default function Counter() {
+  const [state, dispatch] = useReducer(reducer, { count: 0 });
+
+  return (
+    <div>
+      <h2>Count: {state.count}</h2>
+      <button onClick={() => dispatch({ type: "increment" })}>+</button>
+      <button onClick={() => dispatch({ type: "decrement" })}>-</button>
+      <button onClick={() => dispatch({ type: "reset" })}>Reset</button>
+    </div>
+  );
+}
+
+🔹 When to use useReducer?
+
+✅ When state logic is complex (multiple sub-values).
+✅ When next state depends on the previous state.
+✅ When managing multiple actions (instead of multiple useState calls).
+✅ When you want a Redux-like pattern inside a component.
+
+⚡ In short:
+
+useState → simple state.
+
+useReducer → complex state logic with multiple transitions.
+
+
+import React, { useReducer } from "react";
+
+const initialTodos = [];
+
+function reducer(state, action) {
+  switch (action.type) {
+    case "add":
+      return [...state, { id: Date.now(), text: action.text }];
+    case "remove":
+      return state.filter((todo) => todo.id !== action.id);
+    default:
+      return state;
+  }
+}
+
+export default function TodoApp() {
+  const [todos, dispatch] = useReducer(reducer, initialTodos);
+
+  const addTodo = () => {
+    const text = prompt("Enter todo:");
+    dispatch({ type: "add", text });
+  };
+
+  return (
+    <div>
+      <button onClick={addTodo}>Add Todo</button>
+      <ul>
+        {todos.map((t) => (
+          <li key={t.id}>
+            {t.text}
+            <button onClick={() => dispatch({ type: "remove", id: t.id })}>
+              ❌
+            </button>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}

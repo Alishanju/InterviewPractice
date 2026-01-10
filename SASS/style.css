@@ -1,0 +1,163 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
+:root {
+  --background: #f6f5f8;
+}
+
+body {
+  background-color: var(--background);
+  color: white;
+  margin: 0;
+  padding: 1rem;
+  font-family: "Roboto", sans-serif;
+}
+
+body * {
+  -webkit-box-sizing: border-box !important;
+          box-sizing: border-box !important;
+}
+
+/* ===== BUTTON STYLES ===== */
+.button {
+  all: unset;
+  display: inline-block;
+  cursor: pointer;
+  font: inherit;
+  text-align: center;
+  line-height: 1;
+  padding: 1rem 1.5rem;
+  border-radius: 2rem;
+  background-color: white;
+  color: black;
+}
+
+.button--icon {
+  padding: 0.8rem;
+}
+
+.button--transparent-blur {
+  background-color: transparent;
+  color: white;
+  -webkit-backdrop-filter: blur(1rem);
+          backdrop-filter: blur(1rem);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  -webkit-transition: all 0.4s ease-in-out;
+  transition: all 0.4s ease-in-out;
+}
+
+.button--transparent-blur:hover {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+/* ===== FLIGHT CARD ===== */
+.flight-card {
+  width: 100%;
+  max-width: 400px;
+  min-height: 600px;
+  border-radius: 3rem;
+  overflow: hidden;
+  border: 0.4rem solid white;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  background-image: url("https://res.cloudinary.com/dtljonz0f/image/upload/c_auto,ar_4:3,w_3840,g_auto/f_auto/q_auto/v1/shutterstock_329662223_ss_non-editorial_3_csm8lw?_a=BAVAZGE70");
+  background-position: right;
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin: 1rem auto;
+  -webkit-box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.3);
+          box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.3);
+  position: -webkit-sticky;
+  position: sticky;
+  top: 30px;
+  -webkit-transition: opacity 0.2s ease, -webkit-transform 0.2s ease;
+  transition: opacity 0.2s ease, -webkit-transform 0.2s ease;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+  transition: transform 0.2s ease, opacity 0.2s ease, -webkit-transform 0.2s ease;
+}
+
+.flight-card__favorite-btn {
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+}
+
+.flight-card__inner {
+  position: relative;
+  padding: 1rem;
+  width: 100%;
+}
+
+.flight-card__inner::after {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: 0;
+  width: 100%;
+  height: 150%;
+  -webkit-backdrop-filter: blur(0.5rem);
+          backdrop-filter: blur(0.5rem);
+  z-index: 1;
+  -webkit-mask: -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(black), to(black));
+  -webkit-mask: linear-gradient(transparent, black, black);
+          mask: -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(black), to(black));
+          mask: linear-gradient(transparent, black, black);
+}
+
+.flight-card__destination {
+  position: relative;
+  margin-bottom: 1rem;
+  z-index: 2;
+}
+
+.flight-card__destination-title {
+  margin: 0;
+  font-size: 2.5rem;
+}
+
+.flight-card__destination-class {
+  margin: 0;
+}
+
+.flight-card__search {
+  position: relative;
+  z-index: 2;
+}
+
+.flight-card__search-info {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 1rem;
+}
+
+.flight-card__search-info > p {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 0.5rem;
+  margin: 0;
+}
+
+.flight-card__search button {
+  width: 100%;
+  margin-top: 1rem;
+}
+
+.space-top {
+  padding-bottom: 20vh;
+}
+
+.space-bottom {
+  padding-bottom: 100vh;
+}
+/*# sourceMappingURL=style.css.map */
